@@ -4,9 +4,25 @@ import { AppInfo, IAppInfo } from '../../model/AppInfo';
 export const GetAppStoreInfo = async (appId: string): Promise<IAppInfo> => {
   return new Promise(async (resolve: Function, reject: Function) => {
     try {
-      const result = await axios.default.get(`https://itunes.apple.com/jp/lookup?id=${appId}&t=${Date.now()}`);
+      const resultJP = await axios.default.get(`https://itunes.apple.com/jp/lookup?id=${appId}&t=${Date.now()}`);
+      const resultTH = await axios.default.get(`https://itunes.apple.com/th/lookup?id=${appId}&t=${Date.now()}`);
+      const resultUS = await axios.default.get(`https://itunes.apple.com/us/lookup?id=${appId}&t=${Date.now()}`);
 
-      const firstResult = result.data.results[0];
+      let firstResult: any;
+
+      if(resultJP.data.results.length > 0){
+        firstResult = resultJP.data.results[0];
+      }
+
+      if(resultTH.data.results.length > 0){
+        firstResult = resultTH.data.results[0];
+      }
+
+      if(resultUS.data.results.length > 0){
+        firstResult = resultUS.data.results[0];
+      }
+
+      if(!firstResult) reject("Not found!");
 
       const appInfo: IAppInfo = new AppInfo({
         id: appId,
