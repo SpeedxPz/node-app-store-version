@@ -1,6 +1,6 @@
 {
     "name": "node-app-store-version",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Get and update application version from playstore and appstore",
     "author": "TakumiPro",
     "license": "Apache-2.0",

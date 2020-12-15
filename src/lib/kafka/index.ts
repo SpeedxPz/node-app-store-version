@@ -21,7 +21,7 @@ export const versionConsumerClient = new KafkaConsumer(
 
 export const versionProducerClient = new Producer(
   {
-    'compression.type': 'gzip',
+    'compression.type': 'snappy',
     'enable.idempotence': true,
     'retries': 10000000,
     'socket.keepalive.enable': true,
@@ -44,7 +44,7 @@ export const createTopic = (
       'num_partitions': 1,
       'replication_factor': 1,
       'config': {
-        'compression.type': 'gzip',
+        'compression.type': 'snappy',
         'retention.ms': '604800000',
         ...config,
       }
