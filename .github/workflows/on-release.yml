@@ -24,4 +24,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: takumiproducer/node-app-store-version
           tags: latest
-          dockerfile: Dockerfile
+          dockerfile: .Dockerfile
